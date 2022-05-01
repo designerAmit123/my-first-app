@@ -1,0 +1,130 @@
+In the last lecture, we had a look at string interpolation which is a great tool for outputting data in a template, now I want to have a look at property binding. Now one important information by the way, there are a lot of times where you can either use property binding or string interpolation
+and I will show what I mean in a second.
+Let's go to our servers component where we manage all the servers and I want to allow the user to add
+new servers, at least soon
+I want to allow that.
+So we will need a button where I say add server on it
+and I will just add some CSS classes, btn and btn-primary to make this part look nice,
+this is all using normal bootstrap CSS classes though, nothing to do with Angular and to reflect this
+change in my servers component here,
+I also want to comment out the inline template and point to the external template again,
+so templateUrl should point to my servers.component.html file, like this.
+So now with this, if I save this, we see that button here. Right now, it doesn't make any sense that I'm able
+to click this button because it doesn't do anything, we haven't learned to react to a button click yet.
+So I will add a new property in my TypeScript code here which I'll name allowNewServer and set it
+to false.
+So now this is also another property holding a boolean value,
+so true or false, in this case false because I don't want to allow the user to create a new server and
+you could again imagine that this is somehow derived dynamically,
+we will soon work with some dynamic data. So in the HTML file here, I now want to disable the button
+and as you probably know, there is a disabled attribute you can add, like this. If we now save this, the button
+is disabled, I can't click it.
+That's nice but that's hardcoded into HTML,
+now maybe this allowNewServer code here changes
+however, maybe it's not set to this all the time.
+So then, we wouldn't be able to react to this
+and I can actually demonstrate this by for now in the constructor which is simply a method executed
+at the point of time this component is created by Angular, by there calling setTimeout,
+a normal Javascript function
+and here I define after which period of time or after how many milliseconds something should happen,
+so after 2000 milliseconds which are two seconds, I want to execute a function
+and here I'm using an ES6 arrow function.
+This syntax might look strange,
+it's almost the same as function like this, with some difference when it comes to handling the this keyword.
+But in the end, here you passed the arguments and here you have the function body, more importantly in
+
+here,
+
+I can set allowNewServer and now this would not work in the other syntax because this would then
+
+be referring to something else, can set it to true.
+
+So after two seconds, this will be switched to true and since we hardcoded this, of course this doesn't affect
+
+our button here at all, it stays disabled.
+
+So I want to bind it to allowNewServer. So now to make this disabled functionality dynamic, we can
+
+bind to it by enclosing it in square brackets. Square brackets indicate to Angular that we're using
+
+property binding, that we want to dynamically bind some property and disable the HTML attribute, in the
+
+end,
+
+in normal HTML, only sets a specific property on the underlying DOM element.
+
+You might note that each HTML element you use is parsed by the browser and kind of translated into
+
+an element on the document object model,
+
+this is totally unrelated to Angular
+
+and therefore we have an element in this DOM and this element has a couple of properties.
+
+A lot of these can't even be set through attributes on the HTML element.
+
+Well one of the properties is the disabled property and you can set it through the disabled attribute
+
+but here we're not using the disabled attribute anymore, with the square brackets, we are directly binding
+
+to this native disabled property
+
+this HTML element has.
+
+So now, we can set this equal to
+
+and now between the quotation marks here, an expression which for this property resolves to a boolean
+
+but for other properties, another type might be required because again, you can bind to a lot of properties,
+
+basically to all the HTML element properties.
+
+We'll soon learn that there are also other properties you can bind to.
+
+So for now I can simply pass allowNewServer here,
+
+my property name because this will resolve to true or false,
+
+exactly the value the disabled property needs because it has to decide whether it should be disabled or
+
+not.
+
+So now with that, if we reverse this,
+
+so by adding an exclamation mark, we made sure that this is only disabled if this is false,
+
+so if allowNewServer is not true,
+
+otherwise you would do exactly the opposite.
+
+So now with the exclamation mark, if we go back to the app, you see it's disabled
+
+but after two seconds, let me reload this,
+
+it becomes enabled because now we're binding to this disabled property, this native element property,
+
+we're binding this to our own TypeScript property here and the convenient thing is and this is what Angular is
+
+all about, that this will update dynamically.
+
+So once allowNewServer changes, this is changed in the DOM, so now the button gets enabled.
+
+One of the main reasons why you use Angular,
+
+it makes it very easy for you to interact with your DOM, to change something there at runtime like we
+
+do here.
+
+That is property binding in place,
+
+now as I mentioned besides binding to HTML element properties like we do here, you can also bind to other
+
+properties, for example of directives, something we haven't learned about yet
+
+and your own component, something I will also show you later.
+
+So this is property binding.
+
+Before moving on the other two forms of data binding,
+
+let's find out where you could actually use string interpolation instead of property binding.
