@@ -15,7 +15,7 @@ import { Event } from '@angular/router';
 export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCreationStatus = 'No server was created';
-  serverName = '';
+  serverName = 'DemoSever';
 
   constructor() {
     setInterval(() => {
@@ -27,7 +27,7 @@ export class ServersComponent implements OnInit {
   }
 
   onCreateServer(){
-    this.serverCreationStatus = "Server was created Successfully";
+    this.serverCreationStatus = `Server was created Successfully. Server Name is ${this.serverName}`;
   }
 
   onUpdateServerName(event: any){
